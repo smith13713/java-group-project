@@ -51,6 +51,9 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         MainFrame.setVisible(true);
         NotifFrame.setBounds(500, 1000, 300, 300);
         NotifFrame.setLocationRelativeTo(this);
+//        NotifFrame.setVisible(true);
+        
+        AddClientsFrame.setBounds(500,1000, 650, 400);
         NotifFrame.setVisible(true);
 
         AddClientsFrame.setBounds(500, 1000, 650, 400);
@@ -58,6 +61,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         UpdateClientsFrame.setBounds(500, 1000, 650, 440);
         UpdateClientsFrame.setLocationRelativeTo(this);
+        
+        DeleteClientsFrame.setBounds(500,1000, 450, 200);
+        DeleteClientsFrame.setLocationRelativeTo(this);
+        DeleteClientsFrame.setVisible(true);
+        
 
     }
 
@@ -184,29 +192,36 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        prodcode2 = new javax.swing.JTextField();
+        upfirstname = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        prodname2 = new javax.swing.JTextField();
-        prodstdcost2 = new javax.swing.JTextField();
-        prodlistprice4 = new javax.swing.JTextField();
-        prodreorder2 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        prodquantity4 = new javax.swing.JTextField();
-        addbtn1 = new javax.swing.JButton();
-        closeaddclientbtn1 = new javax.swing.JButton();
-        prodlistprice5 = new javax.swing.JTextField();
-        prodlistprice6 = new javax.swing.JTextField();
+        uplastname = new javax.swing.JTextField();
+        upcompany = new javax.swing.JTextField();
+        upjob = new javax.swing.JTextField();
+        upfax = new javax.swing.JTextField();
+        upaddress = new javax.swing.JTextField();
+        upcity = new javax.swing.JTextField();
+        updatebtn = new javax.swing.JButton();
+        closeupdateclientbtn = new javax.swing.JButton();
+        upbusphone = new javax.swing.JTextField();
+        upmobile = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
-        prodquantity6 = new javax.swing.JTextField();
-        prodquantity7 = new javax.swing.JTextField();
-        prodquantity8 = new javax.swing.JTextField();
+        upzip = new javax.swing.JTextField();
+        upstate = new javax.swing.JTextField();
+        upcountry = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        prodcode3 = new javax.swing.JTextField();
+        upid = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
+        DeleteClientsFrame = new javax.swing.JFrame();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        deleteid = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        deletebtn = new javax.swing.JButton();
+        closedeleteclientbtn = new javax.swing.JButton();
 
         prodtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1024,17 +1039,17 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel42.setText("Mobile Phone:");
 
-        addbtn1.setText("Update");
-        addbtn1.addActionListener(new java.awt.event.ActionListener() {
+        updatebtn.setText("Update");
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addbtn1ActionPerformed(evt);
+                updatebtnActionPerformed(evt);
             }
         });
 
-        closeaddclientbtn1.setText("Close");
-        closeaddclientbtn1.addActionListener(new java.awt.event.ActionListener() {
+        closeupdateclientbtn.setText("Close");
+        closeupdateclientbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeaddclientbtn1ActionPerformed(evt);
+                closeupdateclientbtnActionPerformed(evt);
             }
         });
 
@@ -1066,7 +1081,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                         .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(prodcode3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(upid, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                         .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1077,52 +1092,52 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(prodcode2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(prodname2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(prodstdcost2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(upfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(uplastname, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(upcompany, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prodlistprice4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(upjob, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prodlistprice5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(upbusphone, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prodlistprice6, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(upmobile, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(35, 35, 35)
                         .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prodreorder2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(upfax, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(upaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prodquantity4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(upcity, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(prodquantity8, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(upcountry, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
                                     .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(prodquantity6, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                        .addComponent(prodquantity7)))
+                                        .addComponent(upzip, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                        .addComponent(upstate)))
                                 .addGroup(UpdateClientsFrameLayout.createSequentialGroup()
-                                    .addComponent(addbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(closeaddclientbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(closeupdateclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         UpdateClientsFrameLayout.setVerticalGroup(
@@ -1135,50 +1150,117 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodcode3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodcode2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodreorder2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upfax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodname2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(uplastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodstdcost2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodquantity4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upcompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodlistprice4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodquantity7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upjob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upstate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodlistprice5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upbusphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodquantity6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upzip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodlistprice6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodquantity8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upmobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upcountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(UpdateClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(closeaddclientbtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updatebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closeupdateclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
+        );
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("DELETE CLIENT");
+
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel49.setText("Enter the id of the client you wish to remove from the system:");
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel50.setText("ID:");
+
+        deletebtn.setText("Delete ");
+        deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebtnActionPerformed(evt);
+            }
+        });
+
+        closedeleteclientbtn.setText("Close");
+        closedeleteclientbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closedeleteclientbtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DeleteClientsFrameLayout = new javax.swing.GroupLayout(DeleteClientsFrame.getContentPane());
+        DeleteClientsFrame.getContentPane().setLayout(DeleteClientsFrameLayout);
+        DeleteClientsFrameLayout.setHorizontalGroup(
+            DeleteClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeleteClientsFrameLayout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deleteid, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeleteClientsFrameLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(DeleteClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeleteClientsFrameLayout.createSequentialGroup()
+                        .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(closedeleteclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeleteClientsFrameLayout.createSequentialGroup()
+                        .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeleteClientsFrameLayout.createSequentialGroup()
+                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(142, 142, 142))))
+        );
+        DeleteClientsFrameLayout.setVerticalGroup(
+            DeleteClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeleteClientsFrameLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel48)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel49)
+                .addGap(18, 18, 18)
+                .addGroup(DeleteClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DeleteClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closedeleteclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1429,13 +1511,25 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closeaddclientbtnActionPerformed
 
-    private void addbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addbtn1ActionPerformed
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+        
+        
+    }//GEN-LAST:event_updatebtnActionPerformed
 
-    private void closeaddclientbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeaddclientbtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_closeaddclientbtn1ActionPerformed
+    private void closeupdateclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeupdateclientbtnActionPerformed
+        UpdateClientsFrame.setVisible(false);
+        NotifFrame.setVisible(true);
+    }//GEN-LAST:event_closeupdateclientbtnActionPerformed
+
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        
+        
+    }//GEN-LAST:event_deletebtnActionPerformed
+
+    private void closedeleteclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closedeleteclientbtnActionPerformed
+        DeleteClientsFrame.setVisible(false);
+        NotifFrame.setVisible(true);
+    }//GEN-LAST:event_closedeleteclientbtnActionPerformed
 
     public void loadFilteredEmployees() {
         String nameFilter = jTextField1.getText().trim();
@@ -1631,6 +1725,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame AddClientsFrame;
     private javax.swing.JFrame AddProductFrame;
+    private javax.swing.JFrame DeleteClientsFrame;
     private javax.swing.JFrame EmployeeFrame;
     private javax.swing.JFrame MainFrame;
     private javax.swing.JFrame NotifFrame;
@@ -1639,7 +1734,6 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JFrame UpdateClientsFrame;
     private javax.swing.JTextField addaddress;
     private javax.swing.JButton addbtn;
-    private javax.swing.JButton addbtn1;
     private javax.swing.JTextField addbusphone;
     private javax.swing.JTextField addcity;
     private javax.swing.JButton addclientbtn;
@@ -1655,8 +1749,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JTextField addstate;
     private javax.swing.JTextField addzip;
     private javax.swing.JButton closeaddclientbtn;
-    private javax.swing.JButton closeaddclientbtn1;
     private javax.swing.JButton closeaddproductbtn;
+    private javax.swing.JButton closedeleteclientbtn;
+    private javax.swing.JButton closeupdateclientbtn;
+    private javax.swing.JButton deletebtn;
+    private javax.swing.JTextField deleteid;
     private javax.swing.JButton empbtn;
     private javax.swing.JTable emptable;
     private javax.swing.JButton filterempbtn;
@@ -1702,7 +1799,10 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1735,36 +1835,37 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JButton listclientbtn;
     private javax.swing.JButton notifbtn;
     private javax.swing.JComboBox<String> prodcategory;
     private javax.swing.JTextField prodcode;
-    private javax.swing.JTextField prodcode2;
-    private javax.swing.JTextField prodcode3;
     private javax.swing.JTextField prodlistprice;
-    private javax.swing.JTextField prodlistprice4;
-    private javax.swing.JTextField prodlistprice5;
-    private javax.swing.JTextField prodlistprice6;
     private javax.swing.JTextField prodminquant;
     private javax.swing.JTextField prodname;
-    private javax.swing.JTextField prodname2;
     private javax.swing.JTextField prodquantity;
-    private javax.swing.JTextField prodquantity4;
-    private javax.swing.JTextField prodquantity6;
-    private javax.swing.JTextField prodquantity7;
-    private javax.swing.JTextField prodquantity8;
     private javax.swing.JTextField prodreorder;
-    private javax.swing.JTextField prodreorder2;
     private javax.swing.JTextField prodstdcost;
-    private javax.swing.JTextField prodstdcost2;
     private javax.swing.JComboBox<String> prodsupplier;
     private javax.swing.JTable prodtbl;
     private javax.swing.JButton productbtn;
     private javax.swing.JButton removeclientbtn;
     private javax.swing.JButton reportbtn;
+    private javax.swing.JTextField upaddress;
+    private javax.swing.JTextField upbusphone;
+    private javax.swing.JTextField upcity;
+    private javax.swing.JTextField upcompany;
+    private javax.swing.JTextField upcountry;
+    private javax.swing.JButton updatebtn;
     private javax.swing.JButton updateclientbtn;
+    private javax.swing.JTextField upfax;
+    private javax.swing.JTextField upfirstname;
+    private javax.swing.JTextField upid;
+    private javax.swing.JTextField upjob;
+    private javax.swing.JTextField uplastname;
+    private javax.swing.JTextField upmobile;
+    private javax.swing.JTextField upstate;
+    private javax.swing.JTextField upzip;
     // End of variables declaration//GEN-END:variables
 }
