@@ -1,0 +1,11 @@
+# Ignore build artifacts
+/target/
+/*.class
+
+# Ignore NetBeans specific files
+nbproject/private/
+build/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
