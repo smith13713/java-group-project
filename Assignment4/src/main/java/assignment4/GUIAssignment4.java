@@ -4,6 +4,13 @@
  */
 package assignment4;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*; // for SQL stuff
+
 /**
  *
  * @author caili
@@ -17,6 +24,13 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         initComponents();
 //        EmployeeFrame.setVisible(true);
 
+        String[] columnNames = {
+            "First Name", "Last Name", "Address", "City",
+            "Region", "Postal Code", "Phone", "Office", "Active"
+        };
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        emptable.setModel(model);
+
         EmployeeFrame.setBounds(500, 1000, 650, 400);
         EmployeeFrame.setLocationRelativeTo(this);
         ProductFrame.setBounds(500, 1000, 650, 400);
@@ -28,7 +42,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         MainFrame.setBounds(500, 1000, 650, 400);
         MainFrame.setLocationRelativeTo(this);
         MainFrame.setVisible(true);
-        NotifFrame.setBounds(500,1000, 300, 300);
+        NotifFrame.setBounds(500, 1000, 300, 300);
         NotifFrame.setLocationRelativeTo(this);
         NotifFrame.setVisible(true);
     }
@@ -774,7 +788,40 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_filterempbtnMouseClicked
 
+    public void loadEmployeeData() {
+        DefaultTableModel model = (DefaultTableModel) emptable.getModel();
+        model.setRowCount(0); // Clear the table before loading new data
+
+        String query = """
+        SELECT first_name, last_name, address, city, state_province, 
+               zip_postal_code, business_phone, company
+        FROM employees;
+    """;
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("address"),
+                    rs.getString("city"),
+                    rs.getString("state_province"),
+                    rs.getString("zip_postal_code"),
+                    rs.getString("business_phone"),
+                    rs.getString("company"), 
+                    true 
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(); 
+            JOptionPane.showMessageDialog(null, "Database error loading employees:\n" + ex.getMessage());
+        }
+    }
     private void empbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empbtnActionPerformed
+        loadEmployeeData();
         MainFrame.setVisible(false);
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_empbtnActionPerformed
