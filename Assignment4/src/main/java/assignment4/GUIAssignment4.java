@@ -6,10 +6,8 @@ package assignment4;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*; // for SQL stuff
+import java.sql.*;
+import java.math.BigDecimal;
 
 /**
  *
@@ -33,6 +31,15 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         EmployeeFrame.setBounds(500, 1000, 1000, 400);
         EmployeeFrame.setLocationRelativeTo(this);
+
+        String[] Prodnames = {
+            "Supplier IDs", "Product ID", "Product Code", "Product Name", "Description",
+            "Standard Cost", "List Price", "Reorder Level", "Target Level",
+            "Quantity Per Unit", "Discontinued", "Min Reorder Qty", "Category", "Attachments"
+        };
+        DefaultTableModel modelP = new DefaultTableModel(Prodnames, 0);
+        prodtbl.setModel(modelP);
+
         ProductFrame.setBounds(500, 1000, 650, 400);
         ProductFrame.setLocationRelativeTo(this);
         AddProductFrame.setBounds(500, 1000, 650, 350);
@@ -65,7 +72,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         ProductFrame = new javax.swing.JFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        prodtbl = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         addproductpagebtn = new javax.swing.JButton();
         jMenuBar4 = new javax.swing.JMenuBar();
@@ -201,7 +208,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         prodcode3 = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        prodtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -212,7 +219,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        prodtbl.setName(""); // NOI18N
+        jScrollPane3.setViewportView(prodtbl);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -222,6 +230,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         addproductpagebtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addproductpagebtnMouseClicked(evt);
+            }
+        });
+        addproductpagebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addproductpagebtnActionPerformed(evt);
             }
         });
 
@@ -437,6 +450,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         prodcategory.setToolTipText("");
 
         addproductbtn.setText("Add");
+        addproductbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addproductbtnMouseClicked(evt);
+            }
+        });
         addproductbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addproductbtnActionPerformed(evt);
@@ -1196,12 +1214,28 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void closeaddproductbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeaddproductbtnActionPerformed
         AddProductFrame.setVisible(false);
+
+        prodcode.setText("");
+        prodname.setText("");
+        prodstdcost.setText("");
+        prodlistprice.setText("");
+        prodreorder.setText("");
+        jTextField8.setText("");
+        prodquantity.setText("");
+        prodminquant.setText("");
+        prodsupplier.setSelectedIndex(0);
+        prodcategory.setSelectedIndex(0);
+
+        loadProducts();
         ProductFrame.setVisible(true);
     }//GEN-LAST:event_closeaddproductbtnActionPerformed
+
 
     private void addproductpagebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addproductpagebtnMouseClicked
         ProductFrame.setVisible(false);
         AddProductFrame.setVisible(true);
+
+
     }//GEN-LAST:event_addproductpagebtnMouseClicked
 
     private void jMenu13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu13MouseClicked
@@ -1222,7 +1256,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     public void loadEmployeeData() {
         DefaultTableModel model = (DefaultTableModel) emptable.getModel();
-        model.setRowCount(0); // Clear the table before loading new data
+        model.setRowCount(0); 
 
         String query = """
         SELECT first_name, last_name, address, city, state_province, 
@@ -1248,7 +1282,6 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database error loading employees:\n" + ex.getMessage());
         }
     }
@@ -1313,9 +1346,45 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
+    private void loadProducts() {
+        DefaultTableModel model = (DefaultTableModel) prodtbl.getModel();
+        model.setRowCount(0);
+
+        String query = """
+        SELECT *
+        FROM products;
+    """;
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("supplier_ids"),
+                    rs.getInt("id"),
+                    rs.getString("product_code"),
+                    rs.getString("product_name"),
+                    rs.getString("description"),
+                    rs.getBigDecimal("standard_cost"),
+                    rs.getBigDecimal("list_price"),
+                    rs.getInt("reorder_level"),
+                    rs.getInt("target_level"),
+                    rs.getString("quantity_per_unit"),
+                    rs.getBoolean("discontinued"),
+                    rs.getInt("minimum_reorder_quantity"),
+                    rs.getString("category"),
+                    rs.getBytes("attachments")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error loading products:\n" + ex.getMessage());
+        }
+    }
     private void productbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productbtnActionPerformed
         MainFrame.setVisible(false);
         ProductFrame.setVisible(true);
+        loadProducts();
     }//GEN-LAST:event_productbtnActionPerformed
 
     private void jMenu25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu25ActionPerformed
@@ -1413,7 +1482,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     rs.getString("zip_postal_code"),
                     rs.getString("business_phone"),
                     rs.getString("company"),
-                    true 
+                    true
                 };
                 model.addRow(row);
             }
@@ -1426,6 +1495,103 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadFilteredEmployees();
     }//GEN-LAST:event_filterempbtnActionPerformed
+
+    private void addproductpagebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addproductpagebtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addproductpagebtnActionPerformed
+
+    public void addProduct(
+            int supplierIds,
+            String productCode,
+            String productName,
+            String description,
+            BigDecimal standardCost,
+            BigDecimal listPrice,
+            int reorderLevel,
+            int targetLevel,
+            String quantityPerUnit,
+            boolean discontinued,
+            int minimumReorderQuantity,
+            String category,
+            byte[] attachments // Just pass null cause idk man
+    ) {
+        String sql = """
+        INSERT INTO products (
+            supplier_ids, product_code, product_name, description,
+            standard_cost, list_price, reorder_level, target_level,
+            quantity_per_unit, discontinued, minimum_reorder_quantity,
+            category, attachments
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """;
+
+        try (Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, supplierIds);
+            stmt.setString(2, productCode);
+            stmt.setString(3, productName);
+            stmt.setString(4, description);
+            stmt.setBigDecimal(5, standardCost);
+            stmt.setBigDecimal(6, listPrice);
+            stmt.setInt(7, reorderLevel);
+            stmt.setInt(8, targetLevel);
+            stmt.setString(9, quantityPerUnit);
+            stmt.setBoolean(10, discontinued);
+            stmt.setInt(11, minimumReorderQuantity);
+            stmt.setString(12, category);
+            stmt.setBytes(13, attachments);
+
+            int rowsInserted = stmt.executeUpdate();
+            if (rowsInserted > 0) {
+                JOptionPane.showMessageDialog(null, "Product added");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error adding product: " + e.getMessage());
+        }
+    }
+
+    private int getSupplier(String supname) {
+        String query = "SELECT id FROM suppliers WHERE company = ? LIMIT 1";
+
+        try (Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, supname);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                } else {
+                    return -1;
+                }
+            }
+
+        } catch (SQLException ex) {
+            return -1;
+        }
+
+    }
+
+    private void addproductbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addproductbtnMouseClicked
+        // TODO add your handling code here:
+
+        int supplierId = getSupplier((String) prodsupplier.getSelectedItem());
+        String pc = prodcode.getText();
+        String pn = prodname.getText();
+        String des = null;
+        BigDecimal stdcst = new BigDecimal(prodstdcost.getText());
+        BigDecimal lp = new BigDecimal(prodlistprice.getText());
+        int rl = Integer.parseInt(prodreorder.getText());
+        int tl = Integer.parseInt(jTextField8.getText());
+        String qpu = prodquantity.getText();
+        boolean dis = true;
+        int minq = Integer.parseInt(prodminquant.getText());
+        String category = (String) prodcategory.getSelectedItem();
+        byte[] att = null;
+
+        addProduct(supplierId, pc, pn, des, stdcst, lp, rl, tl, qpu, dis, minq, category, att);
+        loadProducts();
+        ProductFrame.setVisible(true);
+        AddProductFrame.setVisible(false);
+    }//GEN-LAST:event_addproductbtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1568,7 +1734,6 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -1596,6 +1761,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JTextField prodstdcost;
     private javax.swing.JTextField prodstdcost2;
     private javax.swing.JComboBox<String> prodsupplier;
+    private javax.swing.JTable prodtbl;
     private javax.swing.JButton productbtn;
     private javax.swing.JButton removeclientbtn;
     private javax.swing.JButton reportbtn;
