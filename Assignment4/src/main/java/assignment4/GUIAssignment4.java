@@ -15,7 +15,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
      */
     public GUIAssignment4() {
         initComponents();
-        EmployeeFrame.setVisible(true);
+//        EmployeeFrame.setVisible(true);
         
         EmployeeFrame.setBounds(500, 1000, 650, 400);
         EmployeeFrame.setLocationRelativeTo(this);
@@ -25,6 +25,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         AddProductFrame.setLocationRelativeTo(this);
         ReportFrame.setBounds(500, 1000, 650, 400);
         ReportFrame.setLocationRelativeTo(this);
+        this.setBounds(500, 1000, 650, 400);
+        MainFrame.setVisible(true);
     }
 
     /**
@@ -48,7 +50,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jMenu16 = new javax.swing.JMenu();
         EmployeeFrame = new javax.swing.JFrame();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        emptable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -95,6 +97,12 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jMenu22 = new javax.swing.JMenu();
         jMenu23 = new javax.swing.JMenu();
         jMenu24 = new javax.swing.JMenu();
+        MainFrame = new javax.swing.JFrame();
+        empbtn = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        productbtn = new javax.swing.JButton();
+        reportbtn = new javax.swing.JButton();
+        notifbtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -181,7 +189,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        emptable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -192,7 +200,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(emptable);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("City:");
@@ -483,9 +491,48 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             .addGap(0, 337, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        empbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        empbtn.setText("Employees");
+        empbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empbtnActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Northwind Sample Trading database");
+
+        productbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        productbtn.setText("Products");
+        productbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productbtnActionPerformed(evt);
+            }
+        });
+
+        reportbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        reportbtn.setText("Report");
+        reportbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportbtnActionPerformed(evt);
+            }
+        });
+
+        notifbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        notifbtn.setText("Notification");
+        notifbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifbtnActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Employees");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Products");
@@ -502,17 +549,52 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jMenu4.setText("Notification");
         jMenuBar1.add(jMenu4);
 
-        setJMenuBar(jMenuBar1);
+        MainFrame.setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout MainFrameLayout = new javax.swing.GroupLayout(MainFrame.getContentPane());
+        MainFrame.getContentPane().setLayout(MainFrameLayout);
+        MainFrameLayout.setHorizontalGroup(
+            MainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainFrameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(174, 174, 174))
+            .addGroup(MainFrameLayout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addGroup(MainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(notifbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reportbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(empbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        MainFrameLayout.setVerticalGroup(
+            MainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainFrameLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(empbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(productbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reportbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notifbtn)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 689, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGap(0, 337, Short.MAX_VALUE)
         );
 
         pack();
@@ -566,6 +648,28 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_filterempbtnMouseClicked
 
+    private void empbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empbtnActionPerformed
+        this.setVisible(false);
+        EmployeeFrame.setVisible(true);
+    }//GEN-LAST:event_empbtnActionPerformed
+
+    private void productbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productbtnActionPerformed
+
+    private void reportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportbtnActionPerformed
+
+    private void notifbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notifbtnActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        this.setVisible(false);
+        EmployeeFrame.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -604,11 +708,14 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame AddProductFrame;
     private javax.swing.JFrame EmployeeFrame;
+    private javax.swing.JFrame MainFrame;
     private javax.swing.JFrame ProductFrame;
     private javax.swing.JFrame ReportFrame;
     private javax.swing.JButton addproductbtn;
     private javax.swing.JButton addproductpagebtn;
     private javax.swing.JButton closeaddproductbtn;
+    private javax.swing.JButton empbtn;
+    private javax.swing.JTable emptable;
     private javax.swing.JButton filterempbtn;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -619,6 +726,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -654,7 +762,6 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -666,5 +773,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton notifbtn;
+    private javax.swing.JButton productbtn;
+    private javax.swing.JButton reportbtn;
     // End of variables declaration//GEN-END:variables
 }
