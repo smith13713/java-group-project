@@ -47,15 +47,19 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 //        NotifFrame.setVisible(true);
         
         AddClientsFrame.setBounds(500,1000, 650, 400);
+        NotifFrame.setVisible(true);
+
+        AddClientsFrame.setBounds(500, 1000, 650, 400);
         AddClientsFrame.setLocationRelativeTo(this);
-        
-        UpdateClientsFrame.setBounds(500,1000, 650, 440);
+
+        UpdateClientsFrame.setBounds(500, 1000, 650, 440);
         UpdateClientsFrame.setLocationRelativeTo(this);
         
         DeleteClientsFrame.setBounds(500,1000, 450, 200);
         DeleteClientsFrame.setLocationRelativeTo(this);
         DeleteClientsFrame.setVisible(true);
         
+
     }
 
     /**
@@ -324,6 +328,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         filterempbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 filterempbtnMouseClicked(evt);
+            }
+        });
+        filterempbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterempbtnActionPerformed(evt);
             }
         });
 
@@ -1314,14 +1323,14 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     rs.getString("state_province"),
                     rs.getString("zip_postal_code"),
                     rs.getString("business_phone"),
-                    rs.getString("company"), 
-                    true 
+                    rs.getString("company"),
+                    true
                 };
                 model.addRow(row);
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace(); 
+            ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Database error loading employees:\n" + ex.getMessage());
         }
     }
@@ -1452,6 +1461,65 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         DeleteClientsFrame.setVisible(false);
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closedeleteclientbtnActionPerformed
+
+    public void loadFilteredEmployees() {
+        String nameFilter = jTextField1.getText().trim();
+        String cityFilter = jTextField2.getText().trim();
+        if (nameFilter.isEmpty() && cityFilter.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All data will be shown unless one or both filters are inputted.");
+            loadEmployeeData();
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) emptable.getModel();
+        model.setRowCount(0);
+
+        String query = "SELECT first_name, last_name, address, city, state_province, zip_postal_code, business_phone, company FROM employees WHERE ";
+
+        if (!nameFilter.isEmpty() && !cityFilter.isEmpty()) {
+            query += "(first_name LIKE ? OR last_name LIKE ?) AND city LIKE ?";
+        } else if (!nameFilter.isEmpty()) {
+            query += "(first_name LIKE ? OR last_name LIKE ?)";
+        } else if (!cityFilter.isEmpty()) {
+            query += "city LIKE ?";
+        }
+
+        try (
+                Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            if (!nameFilter.isEmpty() && !cityFilter.isEmpty()) {
+                stmt.setString(1, "%" + nameFilter + "%");
+                stmt.setString(2, "%" + nameFilter + "%");
+                stmt.setString(3, "%" + cityFilter + "%");
+            } else if (!nameFilter.isEmpty()) {
+                stmt.setString(1, "%" + nameFilter + "%");
+                stmt.setString(2, "%" + nameFilter + "%");
+            } else if (!cityFilter.isEmpty()) {
+                stmt.setString(1, "%" + cityFilter + "%");
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("address"),
+                    rs.getString("city"),
+                    rs.getString("state_province"),
+                    rs.getString("zip_postal_code"),
+                    rs.getString("business_phone"),
+                    rs.getString("company"),
+                    true 
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error while filtering employees.");
+        }
+    }
+    private void filterempbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterempbtnActionPerformed
+        // TODO add your handling code here:
+        loadFilteredEmployees();
+    }//GEN-LAST:event_filterempbtnActionPerformed
 
     /**
      * @param args the command line arguments
