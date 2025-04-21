@@ -1546,7 +1546,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_filterempbtnMouseClicked
 
-    public void loadEmployeeData() {
+    private void loadEmployeeData() {
         DefaultTableModel model = (DefaultTableModel) emptable.getModel();
         model.setRowCount(0);
 
@@ -1805,7 +1805,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         ListClientsFrame.setVisible(true);
     }//GEN-LAST:event_listclientbtnActionPerformed
 
-    public static void addCustomer(
+    private static void addCustomer(
             String company, String lastName, String firstName,
             String jobTitle, String businessPhone, String faxNumber,
             String address, String city, String stateProvince,
@@ -1902,7 +1902,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closeaddclientbtnActionPerformed
 
-    public void updateCustomer(int customerId, String company, String lastName, String firstName,
+    private void updateCustomer(int customerId, String company, String lastName, String firstName,
             String jobTitle, String businessPhone, String mobilePhone,
             String faxNumber, String address, String city,
             String stateProvince, String zipPostalCode, String countryRegion) {
@@ -2028,7 +2028,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closeupdateclientbtnActionPerformed
 
-    public void deleteCustomer(int id) {
+    private void deleteCustomer(int id) {
         String query = "DELETE FROM customers WHERE id = ?";
 
         try (Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -2062,7 +2062,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closedeleteclientbtnActionPerformed
 
-    public void loadFilteredEmployees() {
+    private void loadFilteredEmployees() {
         String nameFilter = jTextField1.getText().trim();
         String cityFilter = jTextField2.getText().trim();
         if (nameFilter.isEmpty() && cityFilter.isEmpty()) {
@@ -2125,7 +2125,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addproductpagebtnActionPerformed
 
-    public void addProduct(
+    private void addProduct(
             int supplierIds,
             String productCode,
             String productName,
@@ -2222,16 +2222,134 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchbtnMouseClicked
 
+    private void searchC(String id, String fn, String ln) {
+        if (id.isBlank() && fn.isBlank() && ln.isBlank()) {
+            getCustomers();
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) emptable1.getModel();
+        model.setRowCount(0);
+
+        String query = "SELECT * FROM customers";
+        StringBuilder wheres = new StringBuilder();
+        boolean hasCondition = false;
+
+        if (!id.isBlank()) {
+            wheres.append(" id = ").append(id);
+            hasCondition = true;
+        }
+
+        if (!fn.isBlank()) {
+            if (hasCondition) {
+                wheres.append(" AND ");
+            }
+            wheres.append(" first_name LIKE '%").append(fn).append("%'");
+            hasCondition = true;
+        }
+
+        if (!ln.isBlank()) {
+            if (hasCondition) {
+                wheres.append(" AND ");
+            }
+            wheres.append(" last_name LIKE '%").append(ln).append("%'");
+        }
+
+        String finalQuery = query;
+        if (wheres.length() > 0) {
+            finalQuery += " WHERE " + wheres;
+        }
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(finalQuery)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("id"),
+                    rs.getString("company"),
+                    rs.getString("last_name"),
+                    rs.getString("first_name"),
+                    rs.getString("email_address"),
+                    rs.getString("job_title"),
+                    rs.getString("business_phone"),
+                    rs.getString("home_phone"),
+                    rs.getString("mobile_phone"),
+                    rs.getString("fax_number"),
+                    rs.getString("address"),
+                    rs.getString("city"),
+                    rs.getString("state_province"),
+                    rs.getString("zip_postal_code"),
+                    rs.getString("country_region"),
+                    rs.getString("web_page"),
+                    rs.getString("notes"),
+                    rs.getBytes("attachments")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error:\n" + ex.getMessage());
+        }
+    }
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
         // TODO add your handling code here:
+        String id = jTextField6.getText();
+        String fname = jTextField3.getText();
+        String lname = jTextField5.getText();
+        searchC(id, fname, lname);
+
     }//GEN-LAST:event_searchbtnActionPerformed
 
     private void inactivebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inactivebtnMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_inactivebtnMouseClicked
 
+    private void getinactive() {
+        DefaultTableModel model = (DefaultTableModel) emptable1.getModel();
+        model.setRowCount(0);
+
+        String query = """
+        SELECT c.id, c.company, c.last_name, c.first_name, c.email_address,
+               c.job_title, c.business_phone, c.home_phone, c.mobile_phone, c.fax_number,
+               c.address, c.city, c.state_province, c.zip_postal_code, c.country_region,
+               c.web_page, c.notes, c.attachments
+        FROM customers c
+        LEFT JOIN orders o ON c.id = o.customer_id
+        WHERE o.id IS NULL;
+    """;
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("id"),
+                    rs.getString("company"),
+                    rs.getString("last_name"),
+                    rs.getString("first_name"),
+                    rs.getString("email_address"),
+                    rs.getString("job_title"),
+                    rs.getString("business_phone"),
+                    rs.getString("home_phone"),
+                    rs.getString("mobile_phone"),
+                    rs.getString("fax_number"),
+                    rs.getString("address"),
+                    rs.getString("city"),
+                    rs.getString("state_province"),
+                    rs.getString("zip_postal_code"),
+                    rs.getString("country_region"),
+                    rs.getString("web_page"),
+                    rs.getString("notes"),
+                    rs.getBytes("attachments")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error:\n" + ex.getMessage());
+        }
+    }
     private void inactivebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inactivebtnActionPerformed
         // TODO add your handling code here:
+        getinactive();
     }//GEN-LAST:event_inactivebtnActionPerformed
 
     private void closebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closebtnMouseClicked

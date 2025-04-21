@@ -12,7 +12,7 @@ public class Connect {
 
     private static final String DB_URL = "jdbc:mariadb://localhost:3306/u24570525_u24664155_northwind";
 //    Make sure you are using your name and password****
-    private static final String DB_USER = "root"; // Replace with your DB username
+    private static final String DB_USER = "root"; 
     private static final String DB_PASSWORD = "smith";
 
     public static Connection getConnection() throws SQLException {
