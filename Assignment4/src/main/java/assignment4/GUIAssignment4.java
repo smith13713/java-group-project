@@ -46,14 +46,21 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         AddProductFrame.setLocationRelativeTo(this);
         ReportFrame.setBounds(500, 1000, 650, 400);
         ReportFrame.setLocationRelativeTo(this);
+        String[] Repnames = {
+            "Warehouse", "Product Category", "Product Quantity"
+        };
+
+        DefaultTableModel modelR = new DefaultTableModel(Repnames, 0);
+        reporttbl.setModel(modelR);
+
         MainFrame.setBounds(500, 1000, 650, 400);
         MainFrame.setLocationRelativeTo(this);
         MainFrame.setVisible(true);
         NotifFrame.setBounds(500, 1000, 300, 300);
         NotifFrame.setLocationRelativeTo(this);
 //        NotifFrame.setVisible(true);
-        
-        AddClientsFrame.setBounds(500,1000, 650, 400);
+
+        AddClientsFrame.setBounds(500, 1000, 650, 400);
         NotifFrame.setVisible(true);
 
         AddClientsFrame.setBounds(500, 1000, 650, 400);
@@ -61,11 +68,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         UpdateClientsFrame.setBounds(500, 1000, 650, 440);
         UpdateClientsFrame.setLocationRelativeTo(this);
-        
-        DeleteClientsFrame.setBounds(500,1000, 450, 200);
+
+        DeleteClientsFrame.setBounds(500, 1000, 450, 200);
         DeleteClientsFrame.setLocationRelativeTo(this);
 //        DeleteClientsFrame.setVisible(true);
-        
+
         ListClientsFrame.setBounds(500, 1000, 1500, 600);
         ListClientsFrame.setLocationRelativeTo(this);
     }
@@ -129,6 +136,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         closeaddproductbtn = new javax.swing.JButton();
         ReportFrame = new javax.swing.JFrame();
         jLabel17 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reporttbl = new javax.swing.JTable();
         jMenuBar6 = new javax.swing.JMenuBar();
         jMenu21 = new javax.swing.JMenu();
         jMenu22 = new javax.swing.JMenu();
@@ -613,6 +622,19 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("REPORT");
 
+        reporttbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(reporttbl);
+
         jMenu21.setText("Employees");
         jMenu21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -647,16 +669,23 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         ReportFrameLayout.setHorizontalGroup(
             ReportFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReportFrameLayout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addGroup(ReportFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReportFrameLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ReportFrameLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         ReportFrameLayout.setVerticalGroup(
             ReportFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReportFrameLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel17)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         MainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1498,7 +1527,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     public void loadEmployeeData() {
         DefaultTableModel model = (DefaultTableModel) emptable.getModel();
-        model.setRowCount(0); 
+        model.setRowCount(0);
 
         String query = """
         SELECT first_name, last_name, address, city, state_province, 
@@ -1533,8 +1562,57 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_empbtnActionPerformed
 
+    private void getreport() {
+        DefaultTableModel model = (DefaultTableModel) reporttbl.getModel();
+        model.setRowCount(0);
+
+        String query = """
+            SELECT 
+            CASE p.category
+                WHEN 'Baked Goods & Mixes' THEN 'Golden Crust Depot'
+                WHEN 'Beverages' THEN 'Liquid Logistics Hub'
+                WHEN 'Candy' THEN 'Sugar Vault'
+                WHEN 'Canned Fruit & Vegetables' THEN 'Preserved Harvest Facility'
+                WHEN 'Canned Meat' THEN 'Canned Protein Reserve'
+                WHEN 'Cereal' THEN 'Morning Munch Storage'
+                WHEN 'Chips, Snacks' THEN 'Crunch Central'
+                WHEN 'Condiments' THEN 'Flavor Stash Hub'
+                WHEN 'Dairy products' THEN 'Cool Creamery Depot'
+                WHEN 'Dried Fruit & Nuts' THEN 'Nature''s Nibbles Vault'
+                WHEN 'Grains' THEN 'Wholegrain Warehouse'
+                WHEN 'Jams, Preserves' THEN 'Fruit Spread Stockroom'
+                WHEN 'Oil' THEN 'Liquid Gold Vault'
+                WHEN 'Pasta' THEN 'Pasta Pantry Depot'
+                WHEN 'Sauces' THEN 'Savory Sauce Storage'
+                WHEN 'Soups' THEN 'Soup Cellar'
+                WHEN 'Uncategorized' THEN 'Overflow Storage Unit'
+                ELSE CONCAT(p.category, ' Storage Unit')
+            END AS warehouse_name,
+            p.category AS category_name,
+            COUNT(p.id) AS number_of_products
+        FROM products p
+        GROUP BY warehouse_name, category_name
+        ORDER BY warehouse_name, category_name;
+        """;
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("warehouse_name"),
+                    rs.getString("category_name"),
+                    rs.getInt("number_of_products")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error loading report:\n" + ex.getMessage());
+        }
+    }
     private void reportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportbtnActionPerformed
         MainFrame.setVisible(false);
+        getreport();
         ReportFrame.setVisible(true);
     }//GEN-LAST:event_reportbtnActionPerformed
 
@@ -1580,6 +1658,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         MainFrame.setVisible(false);
+        getreport();
         ReportFrame.setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
 
@@ -1673,8 +1752,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     }//GEN-LAST:event_closeaddclientbtnActionPerformed
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void closeupdateclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeupdateclientbtnActionPerformed
@@ -1683,8 +1762,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     }//GEN-LAST:event_closeupdateclientbtnActionPerformed
 
     private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_deletebtnActionPerformed
 
     private void closedeleteclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closedeleteclientbtnActionPerformed
@@ -2026,6 +2105,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JMenuBar jMenuBar7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2050,6 +2130,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JButton productbtn;
     private javax.swing.JButton removeclientbtn;
     private javax.swing.JButton reportbtn;
+    private javax.swing.JTable reporttbl;
     private javax.swing.JButton searchbtn;
     private javax.swing.JTextField upaddress;
     private javax.swing.JTextField upbusphone;
