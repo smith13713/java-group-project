@@ -75,6 +75,15 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         ListClientsFrame.setBounds(500, 1000, 1500, 600);
         ListClientsFrame.setLocationRelativeTo(this);
+
+        String[] linames = {
+            "ID", "Company", "Last Name", "First Name", "Email Address",
+            "Job Title", "Business Phone", "Home Phone", "Mobile Phone", "Fax Number",
+            "Address", "City", "State/Province", "ZIP/Postal Code", "Country/Region",
+            "Web Page", "Notes", "Attachments"
+        };
+        DefaultTableModel modelL = new DefaultTableModel(linames, 0);
+        emptable1.setModel(modelL);
     }
 
     /**
@@ -160,6 +169,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         updateclientbtn = new javax.swing.JButton();
         removeclientbtn = new javax.swing.JButton();
         listclientbtn = new javax.swing.JButton();
+        notifclosebtn = new javax.swing.JButton();
         jMenuBar7 = new javax.swing.JMenuBar();
         jMenu25 = new javax.swing.JMenu();
         jMenu26 = new javax.swing.JMenu();
@@ -831,6 +841,14 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             }
         });
 
+        notifclosebtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        notifclosebtn.setText("Exit");
+        notifclosebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifclosebtnActionPerformed(evt);
+            }
+        });
+
         jMenu25.setText("Employees");
         jMenu25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -871,7 +889,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     .addComponent(addclientbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(updateclientbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removeclientbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(notifclosebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79))
         );
         NotifFrameLayout.setVerticalGroup(
@@ -887,7 +906,9 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addComponent(removeclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notifclosebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         AddClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1699,7 +1720,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Database error loading products:\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Database error:\n" + ex.getMessage());
         }
     }
     private void productbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productbtnActionPerformed
@@ -1735,39 +1756,309 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void removeclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeclientbtnActionPerformed
         // TODO add your handling code here:
+        NotifFrame.setVisible(false);
+        NotifFrame.setVisible(true);
     }//GEN-LAST:event_removeclientbtnActionPerformed
 
+    private void getCustomers() {
+        DefaultTableModel model = (DefaultTableModel) emptable1.getModel();
+        model.setRowCount(0);
+
+        String query = """
+        SELECT *
+        FROM customers;
+    """;
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getInt("id"),
+                    rs.getString("company"),
+                    rs.getString("last_name"),
+                    rs.getString("first_name"),
+                    rs.getString("email_address"),
+                    rs.getString("job_title"),
+                    rs.getString("business_phone"),
+                    rs.getString("home_phone"),
+                    rs.getString("mobile_phone"),
+                    rs.getString("fax_number"),
+                    rs.getString("address"),
+                    rs.getString("city"),
+                    rs.getString("state_province"),
+                    rs.getString("zip_postal_code"),
+                    rs.getString("country_region"),
+                    rs.getString("web_page"),
+                    rs.getString("notes"),
+                    rs.getBytes("attachments")
+                };
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Database error:\n" + ex.getMessage());
+        }
+    }
     private void listclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listclientbtnActionPerformed
         NotifFrame.setVisible(false);
+        getCustomers();
         ListClientsFrame.setVisible(true);
     }//GEN-LAST:event_listclientbtnActionPerformed
 
+    public static void addCustomer(
+            String company, String lastName, String firstName,
+            String jobTitle, String businessPhone, String faxNumber,
+            String address, String city, String stateProvince,
+            String zipPostalCode, String countryRegion,
+            String mobilePhone
+    ) {
+        String sql = """
+        INSERT INTO customers (
+            company, last_name, first_name, 
+            job_title, business_phone, fax_number, 
+            address, city, state_province, 
+            zip_postal_code, country_region,
+            email_address, home_phone, mobile_phone,
+            web_page, notes, attachments
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, ?, NULL, NULL, NULL);
+    """;
+
+        try (Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, company);
+            stmt.setString(2, lastName);
+            stmt.setString(3, firstName);
+            stmt.setString(4, jobTitle);
+            stmt.setString(5, businessPhone);
+            stmt.setString(6, faxNumber);
+            stmt.setString(7, address);
+            stmt.setString(8, city);
+            stmt.setString(9, stateProvince);
+            stmt.setString(10, zipPostalCode);
+            stmt.setString(11, countryRegion);
+            stmt.setString(12, mobilePhone);
+
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Customer added");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database error:\n" + e.getMessage());
+        }
+    }
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
+
+        AddClientsFrame.setVisible(false);
+
+        String company = addcompany.getText();
+        String lastName = addlastname.getText();
+        String firstName = addfirstname.getText();
+        String jobTitle = addjob.getText();
+        String businessPhone = addbusphone.getText();
+        String mobilePhone = addmobile.getText();
+        String faxNumber = addfax.getText();
+        String address = addaddress.getText();
+        String city = addcity.getText();
+        String stateProvince = addstate.getText();
+        String zipPostalCode = addzip.getText();
+        String countryRegion = addcountry.getText();
+
+        addCustomer(
+                company, lastName, firstName, jobTitle, businessPhone,
+                faxNumber, address, city, stateProvince,
+                zipPostalCode, countryRegion, mobilePhone
+        );
+
+        addcompany.setText("");
+        addlastname.setText("");
+        addfirstname.setText("");
+        addjob.setText("");
+        addbusphone.setText("");
+        addmobile.setText("");
+        addfax.setText("");
+        addaddress.setText("");
+        addcity.setText("");
+        addstate.setText("");
+        addzip.setText("");
+        addcountry.setText("");
+
+        NotifFrame.setVisible(true);
+
     }//GEN-LAST:event_addbtnActionPerformed
 
     private void closeaddclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeaddclientbtnActionPerformed
         AddClientsFrame.setVisible(false);
+        addcompany.setText("");
+        addlastname.setText("");
+        addfirstname.setText("");
+        addjob.setText("");
+        addbusphone.setText("");
+        addmobile.setText("");
+        addfax.setText("");
+        addaddress.setText("");
+        addcity.setText("");
+        addstate.setText("");
+        addzip.setText("");
+        addcountry.setText("");
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closeaddclientbtnActionPerformed
 
-    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+    public void updateCustomer(int customerId, String company, String lastName, String firstName,
+            String jobTitle, String businessPhone, String mobilePhone,
+            String faxNumber, String address, String city,
+            String stateProvince, String zipPostalCode, String countryRegion) {
 
+        StringBuilder query = new StringBuilder("UPDATE customers SET ");
+        boolean hasUpdates = false;
+
+        if (!company.isBlank()) {
+            query.append("company = '").append(company).append("', ");
+            hasUpdates = true;
+        }
+        if (!lastName.isBlank()) {
+            query.append("last_name = '").append(lastName).append("', ");
+            hasUpdates = true;
+        }
+        if (!firstName.isBlank()) {
+            query.append("first_name = '").append(firstName).append("', ");
+            hasUpdates = true;
+        }
+        if (!jobTitle.isBlank()) {
+            query.append("job_title = '").append(jobTitle).append("', ");
+            hasUpdates = true;
+        }
+        if (!businessPhone.isBlank()) {
+            query.append("business_phone = '").append(businessPhone).append("', ");
+            hasUpdates = true;
+        }
+        if (!mobilePhone.isBlank()) {
+            query.append("mobile_phone = '").append(mobilePhone).append("', ");
+            hasUpdates = true;
+        }
+        if (!faxNumber.isBlank()) {
+            query.append("fax_number = '").append(faxNumber).append("', ");
+            hasUpdates = true;
+        }
+        if (!address.isBlank()) {
+            query.append("address = '").append(address).append("', ");
+            hasUpdates = true;
+        }
+        if (!city.isBlank()) {
+            query.append("city = '").append(city).append("', ");
+            hasUpdates = true;
+        }
+        if (!stateProvince.isBlank()) {
+            query.append("state_province = '").append(stateProvince).append("', ");
+            hasUpdates = true;
+        }
+        if (!zipPostalCode.isBlank()) {
+            query.append("zip_postal_code = '").append(zipPostalCode).append("', ");
+            hasUpdates = true;
+        }
+        if (!countryRegion.isBlank()) {
+            query.append("country_region = '").append(countryRegion).append("', ");
+            hasUpdates = true;
+        }
+
+        if (!hasUpdates) {
+            return;
+        }
+        query.setLength(query.length() - 2);
+        query.append(" WHERE id = ").append(customerId);
+
+        try (Connection conn = Connect.getConnection(); Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(query.toString());
+            JOptionPane.showMessageDialog(null, "Customer updated");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Database error:\n" + e.getMessage());
+        }
+    }
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+        UpdateClientsFrame.setVisible(false);
+
+        int customerId = Integer.parseInt(upid.getText());
+        String company = upcompany.getText();
+        String lastName = uplastname.getText();
+        String firstName = upfirstname.getText();
+        String jobTitle = upjob.getText();
+        String businessPhone = upbusphone.getText();
+        String mobilePhone = upmobile.getText();
+        String faxNumber = upfax.getText();
+        String address = upaddress.getText();
+        String city = upcity.getText();
+        String stateProvince = upstate.getText();
+        String zipPostalCode = upzip.getText();
+        String countryRegion = upcountry.getText();
+
+        upid.setText("");
+        upcompany.setText("");
+        uplastname.setText("");
+        upfirstname.setText("");
+        upjob.setText("");
+        upbusphone.setText("");
+        upmobile.setText("");
+        upfax.setText("");
+        upaddress.setText("");
+        upcity.setText("");
+        upstate.setText("");
+        upzip.setText("");
+        upcountry.setText("");
+
+        updateCustomer(customerId, company, lastName, firstName, jobTitle, businessPhone, mobilePhone, faxNumber, address, city, stateProvince, zipPostalCode, countryRegion);
+        NotifFrame.setVisible(true);
 
     }//GEN-LAST:event_updatebtnActionPerformed
 
     private void closeupdateclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeupdateclientbtnActionPerformed
         UpdateClientsFrame.setVisible(false);
+
+        upid.setText("");
+        upcompany.setText("");
+        uplastname.setText("");
+        upfirstname.setText("");
+        upjob.setText("");
+        upbusphone.setText("");
+        upmobile.setText("");
+        upfax.setText("");
+        upaddress.setText("");
+        upcity.setText("");
+        upstate.setText("");
+        upzip.setText("");
+        upcountry.setText("");
+
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closeupdateclientbtnActionPerformed
 
-    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+    public void deleteCustomer(int id) {
+        String query = "DELETE FROM customers WHERE id = ?";
 
+        try (Connection conn = Connect.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Customer deleted");
+            } else {
+                JOptionPane.showMessageDialog(null, "No customer found with that id.");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error deleting:\n" + e.getMessage());
+        }
+    }
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        DeleteClientsFrame.setVisible(false);
+
+        int id = Integer.parseInt(deleteid.getText());
+        deleteid.setText("");
+        deleteCustomer(id);
+
+        NotifFrame.setVisible(true);
 
     }//GEN-LAST:event_deletebtnActionPerformed
 
     private void closedeleteclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closedeleteclientbtnActionPerformed
         DeleteClientsFrame.setVisible(false);
+        deleteid.setText("");
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closedeleteclientbtnActionPerformed
 
@@ -1952,6 +2243,12 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(true);
     }//GEN-LAST:event_closebtnActionPerformed
 
+    private void notifclosebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifclosebtnActionPerformed
+        // TODO add your handling code here:
+        NotifFrame.setVisible(false);
+        MainFrame.setVisible(true);
+    }//GEN-LAST:event_notifclosebtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2117,6 +2414,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JButton listclientbtn;
     private javax.swing.JButton notifbtn;
+    private javax.swing.JButton notifclosebtn;
     private javax.swing.JComboBox<String> prodcategory;
     private javax.swing.JTextField prodcode;
     private javax.swing.JTextField prodlistprice;
