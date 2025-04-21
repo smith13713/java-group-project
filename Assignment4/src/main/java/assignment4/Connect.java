@@ -10,12 +10,20 @@ import java.sql.SQLException;
 
 public class Connect {
 
-    private static final String DB_URL = "jdbc:mariadb://localhost:3306/u24570525_u24664155_northwind";
-//    Make sure you are using your name and password****
-    private static final String DB_USER = "root"; 
-    private static final String DB_PASSWORD = "smith";
+    private static final String DB_PROTO = System.getenv("dvdrental_DB_PROTO");
+    private static final String DB_HOST = System.getenv("dvdrental_DB_HOST");
+    private static final String DB_PORT = System.getenv("dvdrental_DB_PORT");
+    private static final String DB_NAME = System.getenv("dvdrental_DB_NAME");
+    private static final String DB_USER = System.getenv("dvdrental_DB_USERNAME");
+    private static final String DB_PASSWORD = System.getenv("dvdrental_DB_PASSWORD");
+
+    private static final String DB_URL = DB_PROTO + "://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        try {
+            return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        } catch (SQLException e) {
+            throw new SQLException("Database connection failed: " + e.getMessage(), e);
+        }
     }
 }

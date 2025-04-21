@@ -1551,7 +1551,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         model.setRowCount(0);
 
         String query = """
-        SELECT first_name, last_name, address, city, state_province, 
+        SELECT first_name, last_name, address, city, country_region, 
                zip_postal_code, business_phone, company
         FROM employees;
     """;
@@ -1564,7 +1564,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     rs.getString("last_name"),
                     rs.getString("address"),
                     rs.getString("city"),
-                    rs.getString("state_province"),
+                    rs.getString("country_region"),
                     rs.getString("zip_postal_code"),
                     rs.getString("business_phone"),
                     rs.getString("company"),
