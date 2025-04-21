@@ -40,7 +40,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         DefaultTableModel modelP = new DefaultTableModel(Prodnames, 0);
         prodtbl.setModel(modelP);
 
-        ProductFrame.setBounds(500, 1000, 650, 400);
+        ProductFrame.setBounds(500, 1000, 1500, 600);
         ProductFrame.setLocationRelativeTo(this);
         AddProductFrame.setBounds(500, 1000, 650, 350);
         AddProductFrame.setLocationRelativeTo(this);
@@ -64,9 +64,10 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         
         DeleteClientsFrame.setBounds(500,1000, 450, 200);
         DeleteClientsFrame.setLocationRelativeTo(this);
-        DeleteClientsFrame.setVisible(true);
+//        DeleteClientsFrame.setVisible(true);
         
-
+        ListClientsFrame.setBounds(500, 1000, 1500, 600);
+        ListClientsFrame.setLocationRelativeTo(this);
     }
 
     /**
@@ -222,6 +223,21 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jLabel50 = new javax.swing.JLabel();
         deletebtn = new javax.swing.JButton();
         closedeleteclientbtn = new javax.swing.JButton();
+        ListClientsFrame = new javax.swing.JFrame();
+        jLabel51 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel52 = new javax.swing.JLabel();
+        searchbtn = new javax.swing.JButton();
+        jLabel53 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        emptable1 = new javax.swing.JTable();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        inactivebtn = new javax.swing.JButton();
+        closebtn = new javax.swing.JButton();
+
+        ProductFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         prodtbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -313,6 +329,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addComponent(addproductpagebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
+
+        EmployeeFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         emptable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -423,6 +441,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
+
+        AddProductFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Product Name:");
@@ -587,6 +607,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        ReportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("REPORT");
@@ -636,6 +658,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addContainerGap(285, Short.MAX_VALUE))
         );
+
+        MainFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         empbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         empbtn.setText("Employees");
@@ -740,6 +764,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 
+        NotifFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         addclientbtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addclientbtn.setText("Add");
         addclientbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -834,6 +860,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addComponent(listclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(82, Short.MAX_VALUE))
         );
+
+        AddClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("Last Name:");
@@ -1004,6 +1032,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     .addComponent(closeaddclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
+
+        UpdateClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel32.setText("Last Name:");
@@ -1196,6 +1226,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        DeleteClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         jLabel48.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel48.setText("DELETE CLIENT");
@@ -1261,6 +1293,134 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                     .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(closedeleteclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+        );
+
+        ListClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel51.setText("First name:");
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel52.setText("Last name:");
+
+        searchbtn.setText("Search");
+        searchbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchbtnMouseClicked(evt);
+            }
+        });
+        searchbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchbtnActionPerformed(evt);
+            }
+        });
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel53.setText("LIST CLIENTS");
+
+        emptable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(emptable1);
+
+        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel54.setText("ID:");
+
+        inactivebtn.setText("Inactive");
+        inactivebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inactivebtnMouseClicked(evt);
+            }
+        });
+        inactivebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inactivebtnActionPerformed(evt);
+            }
+        });
+
+        closebtn.setText("Close");
+        closebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closebtnMouseClicked(evt);
+            }
+        });
+        closebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closebtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ListClientsFrameLayout = new javax.swing.GroupLayout(ListClientsFrame.getContentPane());
+        ListClientsFrame.getContentPane().setLayout(ListClientsFrameLayout);
+        ListClientsFrameLayout.setHorizontalGroup(
+            ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+                        .addGap(15, 15, 15))
+                    .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                        .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel52, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                                .addComponent(searchbtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inactivebtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(closebtn))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        );
+        ListClientsFrameLayout.setVerticalGroup(
+            ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ListClientsFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel53)
+                .addGap(3, 3, 3)
+                .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ListClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inactivebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(closebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1499,7 +1659,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     }//GEN-LAST:event_removeclientbtnActionPerformed
 
     private void listclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listclientbtnActionPerformed
-        // TODO add your handling code here:
+        NotifFrame.setVisible(false);
+        ListClientsFrame.setVisible(true);
     }//GEN-LAST:event_listclientbtnActionPerformed
 
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
@@ -1687,6 +1848,31 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         AddProductFrame.setVisible(false);
     }//GEN-LAST:event_addproductbtnMouseClicked
 
+    private void searchbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchbtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchbtnMouseClicked
+
+    private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchbtnActionPerformed
+
+    private void inactivebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inactivebtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inactivebtnMouseClicked
+
+    private void inactivebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inactivebtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inactivebtnActionPerformed
+
+    private void closebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closebtnMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closebtnMouseClicked
+
+    private void closebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closebtnActionPerformed
+        ListClientsFrame.setVisible(false);
+        NotifFrame.setVisible(true);
+    }//GEN-LAST:event_closebtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1727,6 +1913,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JFrame AddProductFrame;
     private javax.swing.JFrame DeleteClientsFrame;
     private javax.swing.JFrame EmployeeFrame;
+    private javax.swing.JFrame ListClientsFrame;
     private javax.swing.JFrame MainFrame;
     private javax.swing.JFrame NotifFrame;
     private javax.swing.JFrame ProductFrame;
@@ -1750,13 +1937,16 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JTextField addzip;
     private javax.swing.JButton closeaddclientbtn;
     private javax.swing.JButton closeaddproductbtn;
+    private javax.swing.JButton closebtn;
     private javax.swing.JButton closedeleteclientbtn;
     private javax.swing.JButton closeupdateclientbtn;
     private javax.swing.JButton deletebtn;
     private javax.swing.JTextField deleteid;
     private javax.swing.JButton empbtn;
     private javax.swing.JTable emptable;
+    private javax.swing.JTable emptable1;
     private javax.swing.JButton filterempbtn;
+    private javax.swing.JButton inactivebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1803,6 +1993,10 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1834,8 +2028,12 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JButton listclientbtn;
     private javax.swing.JButton notifbtn;
@@ -1852,6 +2050,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private javax.swing.JButton productbtn;
     private javax.swing.JButton removeclientbtn;
     private javax.swing.JButton reportbtn;
+    private javax.swing.JButton searchbtn;
     private javax.swing.JTextField upaddress;
     private javax.swing.JTextField upbusphone;
     private javax.swing.JTextField upcity;
