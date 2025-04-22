@@ -44,7 +44,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         ProductFrame.setLocationRelativeTo(this);
         AddProductFrame.setBounds(500, 1000, 650, 350);
         AddProductFrame.setLocationRelativeTo(this);
-        ReportFrame.setBounds(500, 1000, 650, 400);
+        ReportFrame.setBounds(500, 1000, 650, 450);
         ReportFrame.setLocationRelativeTo(this);
         String[] Repnames = {
             "Warehouse", "Product Category", "Product Quantity"
@@ -63,7 +63,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         AddClientsFrame.setBounds(500, 1000, 650, 400);
 //        NotifFrame.setVisible(true);
 
-        AddClientsFrame.setBounds(500, 1000, 650, 400);
+        AddClientsFrame.setBounds(500, 1000, 650, 350);
         AddClientsFrame.setLocationRelativeTo(this);
 
         UpdateClientsFrame.setBounds(500, 1000, 650, 440);
@@ -298,6 +298,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
         jMenu14.setBackground(new java.awt.Color(204, 204, 204));
         jMenu14.setText("Products");
+        jMenu14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu14ActionPerformed(evt);
+            }
+        });
         jMenuBar4.add(jMenu14);
 
         jMenu15.setText("Report");
@@ -332,10 +337,10 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(ProductFrameLayout.createSequentialGroup()
-                .addGap(267, 267, 267)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductFrameLayout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
                 .addComponent(addproductpagebtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(273, 273, 273))
         );
         ProductFrameLayout.setVerticalGroup(
             ProductFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,6 +396,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         jLabel4.setText("EMPLOYEES");
 
         jMenu9.setText("Employees");
+        jMenu9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu9ActionPerformed(evt);
+            }
+        });
         jMenuBar3.add(jMenu9);
 
         jMenu10.setText("Products");
@@ -850,6 +860,11 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         });
 
         jMenu25.setText("Employees");
+        jMenu25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu25MouseClicked(evt);
+            }
+        });
         jMenu25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu25ActionPerformed(evt);
@@ -971,9 +986,13 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         AddClientsFrame.getContentPane().setLayout(AddClientsFrameLayout);
         AddClientsFrameLayout.setHorizontalGroup(
             AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddClientsFrameLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddClientsFrameLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(AddClientsFrameLayout.createSequentialGroup()
+                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(closeaddclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AddClientsFrameLayout.createSequentialGroup()
                         .addGroup(AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AddClientsFrameLayout.createSequentialGroup()
@@ -1023,24 +1042,19 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addzip, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                        .addComponent(addstate)))))
-                        .addGap(12, 12, 12))
-                    .addGroup(AddClientsFrameLayout.createSequentialGroup()
-                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(closeaddclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(addzip)
+                                        .addComponent(addstate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(AddClientsFrameLayout.createSequentialGroup()
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(234, 234, 234)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addGap(233, 233, 233)))
+                .addGap(24, 24, 24))
         );
         AddClientsFrameLayout.setVerticalGroup(
             AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddClientsFrameLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addfirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1080,7 +1094,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addGroup(AddClientsFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(closeaddclientbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         UpdateClientsFrame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1491,12 +1505,14 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         MainFrame.setVisible(false);
+        loadProducts();
         ProductFrame.setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
         // TODO add your handling code here:
         EmployeeFrame.setVisible(false);
+        loadProducts();
         ProductFrame.setVisible(true);
     }//GEN-LAST:event_jMenu10MouseClicked
 
@@ -1532,11 +1548,13 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void jMenu13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu13MouseClicked
         ProductFrame.setVisible(false);
+        loadEmployeeData();
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_jMenu13MouseClicked
 
     private void jMenu22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu22MouseClicked
         ReportFrame.setVisible(false);
+        loadProducts();
         ProductFrame.setVisible(true);
     }//GEN-LAST:event_jMenu22MouseClicked
 
@@ -1644,21 +1662,25 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         MainFrame.setVisible(false);
+        loadEmployeeData();
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
         EmployeeFrame.setVisible(false);
+        getreport();
         ReportFrame.setVisible(true);
     }//GEN-LAST:event_jMenu11MouseClicked
 
     private void jMenu26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu26MouseClicked
         NotifFrame.setVisible(false);
+        loadProducts();
         ProductFrame.setVisible(true);
     }//GEN-LAST:event_jMenu26MouseClicked
 
     private void jMenu27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu27MouseClicked
         NotifFrame.setVisible(false);
+        getreport();
         ReportFrame.setVisible(true);
     }//GEN-LAST:event_jMenu27MouseClicked
 
@@ -1669,6 +1691,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
 
     private void jMenu21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu21MouseClicked
         ReportFrame.setVisible(false);
+        loadEmployeeData();
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_jMenu21MouseClicked
 
@@ -1725,17 +1748,20 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     }
     private void productbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productbtnActionPerformed
         MainFrame.setVisible(false);
-        ProductFrame.setVisible(true);
         loadProducts();
+        ProductFrame.setVisible(true);
+        
     }//GEN-LAST:event_productbtnActionPerformed
 
     private void jMenu25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu25ActionPerformed
         NotifFrame.setVisible(false);
+        loadEmployeeData();
         EmployeeFrame.setVisible(true);
     }//GEN-LAST:event_jMenu25ActionPerformed
 
     private void jMenu15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu15MouseClicked
         ProductFrame.setVisible(false);
+        getreport();
         ReportFrame.setVisible(true);
     }//GEN-LAST:event_jMenu15MouseClicked
 
@@ -1757,7 +1783,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
     private void removeclientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeclientbtnActionPerformed
         // TODO add your handling code here:
         NotifFrame.setVisible(false);
-        NotifFrame.setVisible(true);
+        DeleteClientsFrame.setVisible(true);
     }//GEN-LAST:event_removeclientbtnActionPerformed
 
     private void getCustomers() {
@@ -2168,6 +2194,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
                 JOptionPane.showMessageDialog(null, "Product added");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please ensure you've filled in all input boxes");
             }
 
         } catch (SQLException e) {
@@ -2207,7 +2235,7 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         int rl = Integer.parseInt(prodreorder.getText());
         int tl = Integer.parseInt(jTextField8.getText());
         String qpu = prodquantity.getText();
-        boolean dis = true;
+        boolean dis = false;
         int minq = Integer.parseInt(prodminquant.getText());
         String category = (String) prodcategory.getSelectedItem();
         byte[] att = null;
@@ -2366,6 +2394,20 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         NotifFrame.setVisible(false);
         MainFrame.setVisible(true);
     }//GEN-LAST:event_notifclosebtnActionPerformed
+
+    private void jMenu9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu9ActionPerformed
+        loadEmployeeData();
+    }//GEN-LAST:event_jMenu9ActionPerformed
+
+    private void jMenu14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu14ActionPerformed
+        loadProducts();
+    }//GEN-LAST:event_jMenu14ActionPerformed
+
+    private void jMenu25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu25MouseClicked
+        NotifFrame.setVisible(false);
+        loadEmployeeData();
+        EmployeeFrame.setVisible(true);
+    }//GEN-LAST:event_jMenu25MouseClicked
 
     /**
      * @param args the command line arguments
