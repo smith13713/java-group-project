@@ -56,12 +56,12 @@ public class GUIAssignment4 extends javax.swing.JFrame {
         MainFrame.setBounds(500, 1000, 650, 400);
         MainFrame.setLocationRelativeTo(this);
         MainFrame.setVisible(true);
-        NotifFrame.setBounds(500, 1000, 300, 300);
+        NotifFrame.setBounds(500, 1000, 300, 340);
         NotifFrame.setLocationRelativeTo(this);
 //        NotifFrame.setVisible(true);
 
         AddClientsFrame.setBounds(500, 1000, 650, 400);
-        NotifFrame.setVisible(true);
+//        NotifFrame.setVisible(true);
 
         AddClientsFrame.setBounds(500, 1000, 650, 400);
         AddClientsFrame.setLocationRelativeTo(this);
@@ -326,8 +326,8 @@ public class GUIAssignment4 extends javax.swing.JFrame {
                 .addGroup(ProductFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductFrameLayout.createSequentialGroup()
                         .addGap(256, 256, 256)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(255, 255, 255))
                     .addGroup(ProductFrameLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)))
@@ -341,9 +341,9 @@ public class GUIAssignment4 extends javax.swing.JFrame {
             ProductFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addproductpagebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
